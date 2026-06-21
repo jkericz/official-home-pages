@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专题 · 麻将胡了：稳定入口与页面指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f1ede8;
+            font-family: 'Georgia', 'Times New Roman', '宋体', serif;
+            line-height: 1.75;
+            color: #2d2a26;
+        }
+
+        /* 深色头图 - 杂志首页横幅风格 */
+        .hero {
+            background: linear-gradient(145deg, #1e1c1a 0%, #2b2723 100%);
+            color: #e8e2da;
+            padding: 6rem 2rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 360px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 2px solid #b7a99a;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -60px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(200, 180, 155, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -40px;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(180, 160, 135, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subhead {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #c9beb1;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid rgba(200, 180, 155, 0.25);
+            padding-top: 1.5rem;
+        }
+
+        .hero .subhead i {
+            font-style: italic;
+            color: #d9cfc0;
+        }
+
+        /* 浅色正文区 */
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        /* 每段作为独立卡片，杂志式留白 */
+        .section-card {
+            background: #fffffffc;
+            padding: 2.5rem 2.8rem;
+            margin-bottom: 2.8rem;
+            border-radius: 2px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 4px 20px rgba(0,0,0,0.02);
+            border-left: 3px solid transparent;
+            transition: border-left 0.2s ease;
+        }
+
+        .section-card:hover {
+            border-left: 3px solid #9b7e64;
+        }
+
+        .section-card h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #3a332e;
+            margin-bottom: 1.2rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e3dbd2;
+            padding-bottom: 0.6rem;
+        }
+
+        .section-card h2 small {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: #8a7b6e;
+            margin-left: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .section-card p {
+            margin-bottom: 1.25rem;
+            font-size: 1.02rem;
+            text-indent: 2em;
+        }
+
+        .section-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 强调色链接 */
+        a {
+            color: #8b6f54;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border 0.2s, color 0.2s;
+            font-weight: 400;
+        }
+
+        a:hover {
+            color: #5f4a36;
+            border-bottom: 1px solid #9b7e64;
+        }
+
+        /* 页尾访问提示 - 杂志脚注风格 */
+        .footer-note {
+            background: #f5f0ea;
+            border-top: 1px solid #ddd6ce;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .footer-note .inner {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            color: #4d443d;
+        }
+
+        .footer-note .inner p {
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .footer-note .inner .highlight-link {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            background: #2b2723;
+            color: #ede5db;
+            padding: 0.2rem 0.8rem;
+            border-radius: 2px;
+            border-bottom: none;
+            transition: background 0.2s;
+        }
+
+        .footer-note .inner .highlight-link:hover {
+            background: #4d3d30;
+            color: #f5ede4;
+            border-bottom: none;
+        }
+
+        .footer-note .inner .meta {
+            font-size: 0.85rem;
+            color: #8a7b6e;
+            margin-top: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 4rem 1.2rem 3.5rem;
+                min-height: 280px;
+            }
+            .hero h1 {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+            .hero .subhead {
+                font-size: 0.95rem;
+                padding-top: 1rem;
+            }
+            .container {
+                padding: 1.8rem 1rem 2.5rem;
+            }
+            .section-card {
+                padding: 1.8rem 1.5rem;
+                margin-bottom: 2rem;
+            }
+            .section-card h2 {
+                font-size: 1.3rem;
+            }
+            .section-card p {
+                font-size: 0.98rem;
+                text-indent: 1.5em;
+            }
+            .footer-note {
+                padding: 2rem 1.2rem;
+            }
+            .footer-note .inner .highlight-link {
+                font-size: 1rem;
+                padding: 0.15rem 0.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .section-card {
+                padding: 1.2rem 1rem;
+            }
+            .section-card h2 small {
+                display: block;
+                margin-left: 0;
+                margin-top: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 · 杂志横幅 -->
+    <div class="hero">
+        <h1>麻将胡了</h1>
+        <div class="subhead">
+            <i>稳定入口 · 页面说明</i> —  一份关于习惯、界面与日常体验的专题笔记
+        </div>
+    </div>
+
+    <!-- 正文：三段自然介绍 + 一段夹叙夹议 -->
+    <div class="container">
+
+        <!-- 第一部分：背景说明 / 入口即日常 -->
+        <div class="section-card">
+            <h2>入口即日常 <small>· 从一处稳定开始</small></h2>
+            <p>许多人寻找一个长期使用的数字站点，最初只是因为一个顺手、记忆牢固的地址。网址如同门牌，不必每次重新搜索，也不必担心临时链接失效。<a href="https://official-home-mahjong.com">麻将胡了</a>这个名称，在中文语境里带有一种明确指向：它既是牌局术语，也代表一种放松状态——页面所承载的内容，往往与策略、休闲、交流有关。</p>
+            <p>对于经常光顾的用户而言，一个不变的首页就是锚点。不需要每次辨别新域名，也不需要反复适应不同的布局。这种稳定感，在信息拥挤的互联网时代，反而成了一种稀缺的便利。</p>
+        </div>
+
+        <!-- 第二部分：界面叙述 / 页面本身的安静气质 -->
+        <div class="section-card">
+            <h2>页面即空间 <small>· 叙述与留白</small></h2>
+            <p>打开一个网站，最先接触的并非功能，而是视觉氛围。从横幅的深色基调到正文的浅色留白，设计上刻意降低了对比的锋利感，让视线可以平缓移动。字体选择偏向衬线，行距宽松，段落之间保留足够的呼吸——这些细节不是为了追赶潮流，而是为了让阅读本身成为一件不需要费力的事。</p>
+            <p>信息卡片采用极浅的阴影与微弱的左边界强调，鼠标悬停时以一条暖褐色线作为回应。没有弹窗，没有过度动效，也没有强制引导。页面试图营造一种杂志翻页般的节奏：你可以逐段读下去，也可以跳至自己感兴趣的部分。稳定入口的另一个含义，就是页面不会擅自改变你的浏览路径。</p>
+        </div>
+
+        <!-- 第三部分：场景与使用 / 不同时刻的访问 -->
+        <div class="section-card">
+            <h2>使用场景 <small>· 午后、深夜与间隙</small></h2>
+            <p>根据大多数用户的反馈，访问 <a href="https://official-home-mahjong.com">麻将胡了</a> 的时间段分布很分散：有人在午休时打开，浏览几段资讯或牌例；有人在深夜临睡前，只为了看一眼当天的更新或参与讨论；也有人在工作间隙，快速登录完成例行操作。这些场景的共同点是：不需要复杂的引导，不需要注册弹窗，不需要强制下载。页面只需要稳定、快速、内容可读。</p>
+            <p>正因为如此，首页的结构一直保持简洁。头部横幅只是氛围，下方正文才是核心。每一段介绍都试图回答一个潜在问题：这是什么地方，我能在这里做什么，以及如何连贯地使用它。没有冗余的装饰，没有隐藏的陷阱，入口就是入口，页面就是页面。</p>
+        </div>
+
+        <!-- 第四段：FAQ 摘要风格，自然融入 -->
+        <div class="section-card" style="border-left-color: #b7a99a;">
+            <h2>常见理解 <small>· 关于站点与访问</small></h2>
+            <p><strong>问：</strong>为什么强调“稳定入口”？<br>
+            <strong>答：</strong>因为许多站点频繁更换域名或页面结构，导致用户需要不断适应。而这里的网址长期不变，页面布局也保持连续，减少了每次访问的认知成本。</p>
+            <p><strong>问：</strong>首页内容会经常变化吗？<br>
+            <strong>答：</strong>横幅与基础说明相对稳定，但下方新闻、牌例或社区摘要会定期更新。变化与不变之间有一个平衡：导航保持熟悉感，内容保持新鲜度。</p>
+            <p><strong>问：</strong>如何最快找到需要的信息？<br>
+            <strong>答：</strong>页面顶部设有分类入口，正文区域根据主题分区。如果你习惯从头浏览，每一段都自然衔接；如果你有明确目标，也可以直接使用站内搜索（位于页面右上角）。</p>
+        </div>
+
+    </div>
+
+    <!-- 页尾访问提示 · 杂志脚注 -->
+    <div class="footer-note">
+        <div class="inner">
+            <p>
+                如果你还没有一个固定的入口，不妨将 <a href="https://official-home-mahjong.com" class="highlight-link">麻将胡了</a> 
+                加入书签。它不承诺奇迹，只提供一个安静、持续、可依赖的页面。
+            </p>
+            <p style="font-size: 0.95rem; color: #6b5d50;">
+                无论是午后消遣，还是深夜浏览，同一处地址，同一份布局。稳定本身，就是一种品质。
+            </p>
+            <div class="meta">
+                专题 · 2025 · 页面说明与入口指南
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
